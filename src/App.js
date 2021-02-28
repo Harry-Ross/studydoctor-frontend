@@ -1,57 +1,55 @@
 import React, { Component } from 'react';
-import { Grommet, Nav, Anchor, Main, FormField, TextInput, Form, CheckBox } from 'grommet';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { Box, Grommet, Nav, Anchor, Main, FormField, TextInput, Form, CheckBox, Sidebar, Button, Avatar } from 'grommet';
+
+import {
+    Analytics,
+    Chat,
+    Clock,
+    Configure,
+    Help,
+    Projects,
+    Split,
+    StatusInfoSmall,
+  } from 'grommet-icons';
+
 import { grommet } from 'grommet/themes'
 import './App.css';
+import TodosPage from './pages/Todos';
+import Navbar from './components/navbar';
+import TimetablePage from './pages/Timetable';
 
 class App extends Component {
-    state = { 
-        todoInput: "",
-        todos: []
-     }
-    componentDidMount() {
-        let todoDescs = localStorage.getItem('todos').split(';');
-        let todos = todoDescs.map(todoDesc => {return({desc: todoDesc, checked: false})} )
-        this.setState({
-            todos
-        })
-    }
+    
     render() { 
-        return ( 
-            <div className="App">
+        return (
+            <Router>
                 <Grommet theme={grommet}>
-                    <Nav background="dark-1" pad="medium">
-                        <Anchor>yo</Anchor>
-                    </Nav>
+                <Navbar />
                     <Main>
-                        <Form
-                            onSubmit={() => {
-                                console.log(this.state.todoInput)
-                                var localTodos = localStorage.getItem('todos')
-                                localStorage.setItem('todos', `${localTodos};${this.state.todoInput}`)
-                                this.setState({
-                                    todoInput: "",
-                                })
-                            }}
-                        >
-                            <FormField>
-                                <TextInput 
-                                    value={this.state.todoInput}
-                                    placeholder="Todo here"
-                                    onChange={(event)=> {
-                                        this.setState({ todoInput: event.target.value })
-                                    }} 
-                                />
-                            </FormField>
-                        </Form>
-                        {this.state.todos.length > 0
-                            ? this.state.todos.map(todo => { return(<CheckBox checked={false} label={todo}></CheckBox>)})
-                            : <p>empty</p>
-                        }
+                        <Switch>
+                            <Route exact path="/todo" component={TodosPage} />
+                            <Route exact path="/timetable" component={TimetablePage}/>
+                        </Switch>
                     </Main>
                 </Grommet>
-            </div>
+            </Router> 
         );
     }
 }
+
+const SidebarButton = ({ icon, label, ...rest }) => (
+    <Box pad="small">
+      <Button
+        gap="medium"
+        alignSelf="start"
+        plain
+        icon={icon}
+        label={label}
+        {...rest}
+      />
+    </Box>
+  );
  
 export default App;
