@@ -23,6 +23,7 @@ import TodosPage from './pages/Todos';
 import Navbar from './components/navbar';
 import TimetablePage from './pages/Timetable';
 import HomePage from './pages/Home';
+import FilesPage from './pages/Files';
 class App extends Component {
     
     render() { 
@@ -40,6 +41,7 @@ class App extends Component {
                           <Route exact path={["/", "/home"]} component={HomePage} />
                             <Route exact path="/todo" component={TodosPage} />
                             <Route exact path="/timetable" component={TimetablePage}/>
+                            <Route exact path="/files" component={FilesPage}/>
                         </Switch>
                     </Main>
                 </Grommet>

@@ -12,20 +12,45 @@ class TodosPage extends Component {
         let localTodos = localStorage.getItem('todos');
         if (localTodos != null) {
             let todoDescs = localStorage.getItem('todos').split(';') 
-            let todos = todoDescs.map(todoDesc => {return({desc: todoDesc, checked: (Math.round(Math.random()) == 1)})} )
+            let todos = []
+            for (let i = 0; i < todoDescs.length; i++) {
+                todos.push({
+                    index: i,
+                    desc: todoDescs[i],
+                    checked: false
+                })
+            }
             this.setState({
                 todos
             })
         }        
     }
+
+    createTodo = (desc) => {
+        let localTodos = localStorage.getItem('todos')
+        localStorage.setItem('todos', `${desc};${localTodos}`)
+
+        let newTodos = this.state.todos;
+        newTodos.push({desc, checked: false})
+        this.setState({
+            todos: newTodos
+        })
+    }
+
+    completeTask = (index) => {
+        let newTodos = this.state.todos;
+        newTodos[index].checked = !newTodos[index].checked;
+        this.setState({
+            todos: newTodos
+        })
+    }
+
     render() { 
         return ( 
             <React.Fragment>
                 <Form
                     onSubmit={() => {
-                        console.log(this.state.todoInput)
-                        var localTodos = localStorage.getItem('todos')
-                        localStorage.setItem('todos', `${localTodos};${this.state.todoInput}`)
+                        this.createTodo(this.state.todoInput)
                         this.setState({
                             todoInput: "",
                         })
@@ -43,7 +68,7 @@ class TodosPage extends Component {
                 </Form>
                 <div className="todos">
                 {this.state.todos.length > 0
-                    ? this.state.todos.map(todo => <CheckBox checked={todo.checked} label={todo.desc}></CheckBox>)
+                    ? this.state.todos.map(todo => <CheckBox onChange={(event) => this.completeTask(todo.index)} checked={todo.checked} label={todo.desc}></CheckBox>)
                     : <p>empty</p>
                 }
                 </div>

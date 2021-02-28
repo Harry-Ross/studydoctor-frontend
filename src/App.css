@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.dayofweek {
+  font-size: 15pt;
+  font-weight: 600;
+  text-align: center;
+}
+
+.timeofday {
+  font-size: 15pt;
+  font-weight: 600;
+  text-align: right;
+}
