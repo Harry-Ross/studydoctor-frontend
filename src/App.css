@@ -48,3 +48,27 @@
   font-weight: 600;
   text-align: right;
 }
+
+.timetable-school {
+  background-color: darkorange;
+  text-align: center;
+  font-weight: 600;
+}
+
+.timetable-red {
+  background-color: #fc8e6d;
+  text-align: center;
+  font-weight: 600;
+}
+
+.timetable-green {
+  background-color: aquamarine;
+  text-align: center;
+  font-weight: 600;
+}
+
+.timetable-blue {
+  background-color: #a1f59d;
+  text-align: center;
+  font-weight: 600;
+}

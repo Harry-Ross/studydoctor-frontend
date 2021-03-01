@@ -26,9 +26,11 @@ class TimetablePage extends Component {
                       <div className="timeofday" key="asdddd" data-grid={{x: 0, y: 7, w: 1, h: 2, static: true}}>18:00</div>
                       <div className="timeofday" key="asddddd" data-grid={{x: 0, y: 9, w: 1, h: 2, static: true}}>19:00</div>
 
+                      <div className="timetable-red" key="a" data-grid={{x: 1, y: 1, w: 1, h: 2, minW: 1, maxW: 1}}>English essay</div>
+                      <div className="timetable-school" key="b" data-grid={{x: 1, y: 1, w: 1, h: 2, minW: 1, maxW: 1}}>Davis time</div>
+                      <div className="timetable-green" key="c" data-grid={{x: 1, y: 3, w: 1, h: 2, minW: 1, maxW: 1}}>Physics</div>
+                      <div className="timetable-blue" key="d" data-grid={{x: 1, y: 3, w: 1, h: 2, minW: 1, maxW: 1}}>Maths study</div>
 
-                      <div className="green" key="b" data-grid={{x: 1, y: 1, w: 1, h: 2, minW: 1, maxW: 1}}>School</div>
-                      <div className="green" key="c" data-grid={{x: 1, y: 3, w: 1, h: 2, minW: 1, maxW: 1}}>Games</div>
                     </GridLayout>
           </div>
           )

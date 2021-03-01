@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grommet, Nav, Anchor, Main, FormField, TextInput, Form, CheckBox } from 'grommet';
+import { Grommet, Nav, Anchor, Main, FormField, TextInput, Form, CheckBox, DropButton, Calendar } from 'grommet';
 import { grommet } from 'grommet/themes'
 import { Tooltip } from 'grommet-icons';
 
@@ -10,20 +10,9 @@ class TodosPage extends Component {
      }
     componentDidMount() {
         let localTodos = localStorage.getItem('todos');
-        if (localTodos != null) {
-            let todoDescs = localStorage.getItem('todos').split(';') 
-            let todos = []
-            for (let i = 0; i < todoDescs.length; i++) {
-                todos.push({
-                    index: i,
-                    desc: todoDescs[i],
-                    checked: false
-                })
-            }
-            this.setState({
-                todos
-            })
-        }        
+        this.setState({
+            todos: this.parseLocalTodos(localTodos)
+        })
     }
 
     createTodo = (desc) => {
@@ -37,9 +26,26 @@ class TodosPage extends Component {
         })
     }
 
+    parseLocalTodos = (localTodos) => {
+        if (localTodos != null) {
+            let todoDescs = localStorage.getItem('todos').split(';') 
+            let todos = []
+            for (let i = 0; i < todoDescs.length; i++) {
+                todos.push({
+                    index: i,
+                    desc: todoDescs[i],
+                    checked: false
+                })
+            }
+            return todos;
+        } else {
+            return [];
+        }
+    }
+
     completeTask = (index) => {
         let newTodos = this.state.todos;
-        newTodos[index].checked = !newTodos[index].checked;
+        newTodos.splice(index, 1);
         this.setState({
             todos: newTodos
         })
@@ -65,7 +71,9 @@ class TodosPage extends Component {
                             }} 
                         />
                     </FormField>
+                    <DropButton label="Due date" dropContent={<Calendar size="small" date={(new Date()).toISOString()} />}/>
                 </Form>
+                <br /> <br />
                 <div className="todos">
                 {this.state.todos.length > 0
                     ? this.state.todos.map(todo => <CheckBox onChange={(event) => this.completeTask(todo.index)} checked={todo.checked} label={todo.desc}></CheckBox>)
