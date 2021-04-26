@@ -27,20 +27,12 @@ class TodosPage extends Component {
     }
 
     parseLocalTodos = (localTodos) => {
-        if (localTodos != null) {
-            let todoDescs = localStorage.getItem('todos').split(';') 
-            let todos = []
-            for (let i = 0; i < todoDescs.length; i++) {
-                todos.push({
-                    index: i,
-                    desc: todoDescs[i],
-                    checked: false
-                })
-            }
-            return todos;
-        } else {
-            return [];
-        }
+        let todoDescs = localStorage.getItem('todos').split(';') 
+        let todos = todoDescs.map(todoDesc => ({
+            desc: todoDesc,
+            checked: false
+        })) || []
+        return todos;
     }
 
     completeTask = (index) => {
