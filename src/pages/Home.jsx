@@ -10,6 +10,10 @@ class HomePage extends Component {
         })
     }
     state = {  }
+    componentDidMount() {
+        axios.get('http://localhost:4000/api/classroom/tasks')
+    }
+
     render() { 
         return (
             <div>
