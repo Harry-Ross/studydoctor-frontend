@@ -1,9 +1,21 @@
 import axios from "axios";
-import global from '../../global'
+import global from '../global'
 
 class TodoService {
-    getTodos() {
-        
+    async getTodos() {
+        return ([
+            {
+                title: "Todo #1",
+                description: "dasjhhjnasdjhdashjadsfjadshjsa",
+                id: "1",
+            },
+            {
+                title: ""
+            },
+            {
+
+            }
+        ])
     }
     createTodo(title) {
 
@@ -14,4 +26,4 @@ class TodoService {
     }
 }
 
-export default TodoService();
+export default new TodoService();

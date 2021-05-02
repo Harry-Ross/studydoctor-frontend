@@ -7,12 +7,15 @@ class HomePage extends Component {
     componentDidMount() {
         classroomService.getClasses().then(data => {
             console.log(data)
-        })
+        }).catch(e => console.error(e))
+
+        classroomService.getClasswork().then(data => {
+            data.map(work => {
+                console.log(work.title)
+            })
+        }).catch(e => console.error(e))
     }
     state = {  }
-    componentDidMount() {
-        axios.get('http://localhost:4000/api/classroom/tasks')
-    }
 
     render() { 
         return (

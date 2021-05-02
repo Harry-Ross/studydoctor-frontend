@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grommet, Nav, Anchor, Main, FormField, TextInput, Form, CheckBox, DropButton, Calendar } from 'grommet';
 import { grommet } from 'grommet/themes'
 import { Tooltip } from 'grommet-icons';
+import todoService from '../services/todo-service';
 
 class TodosPage extends Component {
     state = { 
@@ -9,37 +10,24 @@ class TodosPage extends Component {
         todos: []
      }
     componentDidMount() {
-        let localTodos = localStorage.getItem('todos');
-        this.setState({
-            todos: this.parseLocalTodos(localTodos)
+        todoService.getTodos().then(todos => {
+            this.setState({ todos })
         })
     }
 
     createTodo = (desc) => {
-        let localTodos = localStorage.getItem('todos')
-        localStorage.setItem('todos', `${desc};${localTodos}`)
-
-        let newTodos = this.state.todos;
-        newTodos.push({desc, checked: false})
-        this.setState({
-            todos: newTodos
+        todoService.createTodo(desc).then(res => {
+            let newTodos = this.state.todos;
+            newTodos.push({desc, checked: false})
+            this.setState({
+                todos: newTodos
+            })
         })
     }
 
-    parseLocalTodos = (localTodos) => {
-        let todoDescs = localStorage.getItem('todos').split(';') 
-        let todos = todoDescs.map(todoDesc => ({
-            desc: todoDesc,
-            checked: false
-        })) || []
-        return todos;
-    }
-
     completeTask = (index) => {
-        let newTodos = this.state.todos;
-        newTodos.splice(index, 1);
-        this.setState({
-            todos: newTodos
+        todoService.completeTodo().then(res => {
+
         })
     }
 
