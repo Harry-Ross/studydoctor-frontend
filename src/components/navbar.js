@@ -1,20 +1,32 @@
-import { Anchor, Nav } from 'grommet';
+import { Anchor, Nav, RoutedAnchor } from 'grommet';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import Global from '../global'
+import UserNav from './user-nav';
+
 class Navbar extends Component {
-    state = {  }
+
     render() { 
+        const links = [
+            ["/", "Home"],
+            ["/todo", "Todo"],
+            ["/files", "Files"],
+            ["/timetable", "Timetable"]
+        ]
         return ( 
             <Nav direction="row" background="neutral-3" pad="medium">
-                <Anchor as={Link} to="/" hoverIndicator>Home</Anchor>
-                <Anchor as={Link} to="/todo" hoverIndicator>Todos</Anchor>
-                <Anchor as={Link} to="/files" hoverIndicator>Files</Anchor>
-                <Anchor as={Link} to="/timetable" hoverIndicator>Schedule</Anchor>
-                <Anchor href={`${Global.getBackendUrl()}/auth`} hoverIndicator>Login</Anchor>
+                {links.map(link => <RouterLink key={link[1]} to={link[0]} label={link[1]} />)}
+                <UserNav />
             </Nav>
         );
     }
+}
+
+function RouterLink(props) {
+    return(
+        <Link to={props.to}>
+            <Anchor hoverIndicator>{props.label}</Anchor>
+        </Link>
+    )
 }
  
 export default Navbar;

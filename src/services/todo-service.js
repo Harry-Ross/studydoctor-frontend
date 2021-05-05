@@ -1,28 +1,20 @@
 import axios from "axios";
 import global from '../global'
+const apiUrl = global.getBackendUrl() + "/api/todos"
 
 class TodoService {
     async getTodos() {
-        return ([
-            {
-                title: "Todo #1",
-                description: "dasjhhjnasdjhdashjadsfjadshjsa",
-                id: "1",
-            },
-            {
-                title: ""
-            },
-            {
-
-            }
-        ])
+        let res = await axios.get(`${apiUrl}/list`);
+        return res.data;
     }
-    createTodo(title) {
-
+    async createTodo(title, description, classroomTask) {
+        let res = await axios.post(`${apiUrl}/create`, { title, description, classroomTask })
+        return res.data;
     }
 
-    completeTodo(id) {
-        axios.post(`${global.getUrl()}/complete/${id}`)
+    async completeTodo(id) {
+        let res = await axios.post(`${apiUrl}/complete/${id}`)
+        return res.data;
     }
 }
 

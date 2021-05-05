@@ -24,6 +24,8 @@ import Navbar from './components/navbar';
 import TimetablePage from './pages/Timetable';
 import HomePage from './pages/Home';
 import FilesPage from './pages/Files';
+import global from './global'
+
 class App extends Component {
     
     render() { 
@@ -42,6 +44,10 @@ class App extends Component {
                             <Route exact path="/todo" component={TodosPage} />
                             <Route exact path="/timetable" component={TimetablePage}/>
                             <Route exact path="/files" component={FilesPage}/>
+                            <Route exact path="/auth" component={() => {
+                              window.location.href = global.getBackendUrl() + "/auth";
+                              return null;
+                            }}/>
                         </Switch>
                     </Main>
                 </Grommet>

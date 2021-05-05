@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 
 import GridLayout from 'react-grid-layout';
 
-
-
 class TimetablePage extends Component {
     state = {  }
     render() { 

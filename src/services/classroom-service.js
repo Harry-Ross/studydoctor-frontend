@@ -1,6 +1,6 @@
 import axios from "axios";
 import global from '../global'
-const apiUrl = global.getBackendUrl() + "/classroom"
+const apiUrl = global.getBackendUrl() + "/api/classroom"
 
 axios.defaults.withCredentials = true;
 
