@@ -34,9 +34,7 @@ class HomePage extends Component {
             })
         })
 
-        classroomService.getClasses().then(data => {
-            console.log(data)
-        }).catch(e => console.error(e))
+        
     }
     state = { 
         user: {},
@@ -84,7 +82,12 @@ function Classwork(props) {
 
 function Todos(props) {
     return(
-        <List primaryKey="title" secondaryKey="dueDate" data={props.todos}/>
+        <div>
+        {props.todos
+            ? <List primaryKey="title" secondaryKey="dueDate" data={props.todos}/>
+            : <span>empty</span>
+        }
+        </div>
     )
 }
  

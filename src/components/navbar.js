@@ -9,8 +9,8 @@ class Navbar extends Component {
         const links = [
             ["/", "Home"],
             ["/todo", "Todo"],
-            ["/files", "Files"],
-            ["/timetable", "Timetable"]
+            ["/timetable", "Timetable"],
+            ["/classwork", "Classwork"]
         ]
         return ( 
             <Nav direction="row" background="neutral-3" pad="medium">

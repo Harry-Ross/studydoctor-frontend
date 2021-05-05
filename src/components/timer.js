@@ -39,7 +39,7 @@ class Timer extends Component {
     render() { 
         return ( 
             <div>
-                <h1>{Math.floor(this.state.time/60)}:{(this.state.time-(Math.floor(this.state.time/60)*60))}</h1>
+                <h1>{Math.floor(this.state.time/60)}:{('0' + (this.state.time-(Math.floor(this.state.time/60)*60)) ).slice(-2)}</h1>
                 <Button primary label={!this.state.started ? "Start" : "Stop"} onClick={this.startTimer} />
                 <Button secondary label="Reset" onClick={this.stopTimer} />
             </div>

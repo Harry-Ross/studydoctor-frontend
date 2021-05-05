@@ -26,13 +26,14 @@ class TodosPage extends Component {
     }
 
     createTodo = (title, desc, dueDate) => {
-        todoService.createTodo(title, desc).then(res => {
+        todoService.createTodo(title, desc, dueDate).then(res => {
             let newTodos = this.state.todos;
-            newTodos.push({desc, checked: false})
+            newTodos.push({title, description: desc, dueDate, checked: false})
             if (res.success) {
                 this.setState({
                     todos: newTodos,
                     todoInput: "",
+                    descInput: ""
                 })
             } else {
                 this.setState({
