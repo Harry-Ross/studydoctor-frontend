@@ -93,3 +93,25 @@
   background: rgb(216, 216, 216);
   border-radius: 13px;
 }
+
+.home-content {
+  width: 100%;
+  display: flex;
+}
+
+.home-1 {
+  width: 33%;
+  background-color: #F2F2F2;
+  margin-right: 10px;
+}
+
+.home-2 {
+  width: 33%;
+  background-color: #00739D;
+  margin-right: 10px;
+}
+
+.home-3 {
+  width: 33%;
+  background-color: #A2423D;
+}

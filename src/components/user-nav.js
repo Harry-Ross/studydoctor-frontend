@@ -1,4 +1,4 @@
-import { Anchor, Avatar, Box } from 'grommet';
+import { Anchor, Avatar, Box, Menu } from 'grommet';
 import React, { Component } from 'react';
 import global from '../global'
 import authService from '../services/auth-service';
@@ -20,7 +20,7 @@ class UserNav extends Component {
     render() { 
         return ( 
             <div>{this.state.loggedIn
-                ? <Box direction="row" gap="small"><Anchor>{this.state.user.firstname}</Anchor><Avatar size="small" src={this.state.user.profilePic} /></Box>
+                ? <Box direction="row" gap="small">{this.state.user.firstname} <Avatar size="small" src={this.state.user.profilePic} /></Box>
                 : <Anchor href={`${global.getBackendUrl()}/auth`} hoverIndicator>Login</Anchor>
             }
                 

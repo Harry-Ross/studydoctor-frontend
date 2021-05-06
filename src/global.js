@@ -1,6 +1,6 @@
 class Global {
     getBackendUrl() {
-        return "http://localhost:4000"
+        return process.env.REACT_APP_BACKEND_URL || "http://localhost:4000"
     } 
 }
 export default new Global();

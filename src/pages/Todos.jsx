@@ -43,16 +43,18 @@ class TodosPage extends Component {
         })
     }
 
-    completeTask = (id, index) => {
-        todoService.completeTodo(id).then(data => {
+    completeTask = (uuid) => {
+        todoService.completeTodo(uuid).then(data => {
             if (data.success) {
-                let newTodos = this.state.todos;
-                newTodos.splice(index, 1);
+                let newTodos = this.state.todos.filter(todo => {
+                    return (todo.uuid != uuid);
+                });
                 this.setState({
                     todos: newTodos
                 })
             }
         })
+        this.forceUpdate();
     }
 
     handleSelect = (title, description, dueDate, classroomTask, uuid) => {
@@ -106,7 +108,7 @@ class TodosPage extends Component {
                                     <input 
                                         key={todo.title}
                                         type="checkbox"
-                                        onChange={(event) => this.completeTask(index)} 
+                                        onChange={(event) => this.completeTask(todo.uuid)} 
                                         defaultChecked={todo.checked} 
                                     /> <span onClick={() => this.handleSelect(todo.title, todo.description, todo.dueDate, todo.classroomTask, todo.uuid)}>{todo.title}</span>
                                 </div>

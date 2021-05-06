@@ -49,20 +49,23 @@ class HomePage extends Component {
                     ?   <div>
                             <h1>Hi {this.state.user.firstname}, welcome to StudyDoctor!</h1>
                             <h3>Here's what's on the agenda:</h3>
-                            <Distribution
-                            values={[
-                                { value: 50, color: 'light-3', heading: "Todos", child: (<Todos todos={this.state.todos} />) },
-                                { value: 30, color: 'neutral-3', heading: "Classwork", child: (<Classwork classwork={this.state.classwork} />) },
-                                { value: 20, color: 'neutral-4', heading: "Pomodoro", child: <Timer /> },
-                            ]} fill={true} basis="auto"
-                            >
-                            {value => (
-                                <Box pad="small" background={value.color} fill>
-                                    <h3>{value.heading}</h3>
-                                    {value.child}
-                                </Box>
-                            )}
-                            </Distribution>
+                            <div className="home-content">
+                                <div className="home-1">
+                                    <HomeBox heading="Todos" color="light-3">
+                                        <Todos todos={this.state.todos} />
+                                    </HomeBox>
+                                </div>
+                                <div className="home-2">
+                                    <HomeBox heading="Classwork" color="neutral-3">
+                                        <Classwork classwork={this.state.classwork} />
+                                    </HomeBox>
+                                </div>
+                                <div className="home-3">
+                                    <HomeBox heading="Pomodoro" color="neutral-4">
+                                        <Timer />
+                                    </HomeBox>
+                                </div>
+                            </div>
                         </div>
                     : <Redirect to="/auth"/>
                 }
@@ -88,6 +91,15 @@ function Todos(props) {
             : <span>empty</span>
         }
         </div>
+    )
+}
+
+function HomeBox(props) {
+    return(
+        <Box pad="small" background={props.color} fill>
+            <h3>{props.heading}</h3>
+            {props.children}
+        </Box>
     )
 }
  
