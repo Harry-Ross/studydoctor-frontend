@@ -67,7 +67,7 @@ class HomePage extends Component {
                                 </div>
                             </div>
                         </div>
-                    : <Redirect to="/auth"/>
+                    : <p>fuck</p>
                 }
                 
             </div>
